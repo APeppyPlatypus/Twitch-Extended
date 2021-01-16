@@ -32,19 +32,19 @@ end
 function run_events(table)
 	for k, v in pairs(table)do
 		-- APP: Debug output etc.
-		--print(v.id)
-		--[[for key, value in pairs(v) do
+		print(v.id)
+		for key, value in pairs(v) do
 			print('\t', key, tostring(value))
-		end]]
+		end
 		
 		-- APP: Needed to add this because some events don't have an action and would not trigger/cause issues with the next event. 
 		-- Note that this doesn't trigger the timer for the events like sea of random or RAIN_HIISI and instead just spawns them in right away.
 		-- Chaotic but in a good way for 2d20/1d20
 		if v.action == nil then
-			--print("action_delayed event.")
+			print("action_delayed event.")
 			v.action_delayed(v)
 		else
-			--print("regular action event.")
+			print("regular action event.")
 			v.action(v)
 		end
 	end
@@ -1699,19 +1699,19 @@ append_events = {
 						
 						-- APP: Has been replaced with EntityGetAllComponents it seems? Have to get all components and then loop through and find the ability component and then set. After that, everything looks to work normally.
 						local wandComponents = EntityGetAllComponents( base_wand );
-						--print("wandComponents = " .. tostring(wandComponents))
+						print("wandComponents = " .. tostring(wandComponents))
 						local ability_component = ""
 						for index, data in ipairs(wandComponents) do
-							--print("index = " .. index)
-							--print("data = " .. data)
+							print("index = " .. index)
+							print("data = " .. data)
 							componentName = ComponentGetTypeName(data)
-							--print("componentName = " .. componentName)
+							print("componentName = " .. componentName)
 							if componentName == "AbilityComponent" then
-								--print("-- Found AbilityComponent. Setting...")
+								print("-- Found AbilityComponent. Setting...")
 								ability_component = data
 							end
 						end
-						--print("ability_component = " .. ability_component)
+						print("ability_component = " .. ability_component)
 						
 						if ability_component ~= nil then
 							local deck_capacity = tonumber( ComponentObjectGetValue( ability_component, "gun_config", "deck_capacity" ) );
